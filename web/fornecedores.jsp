@@ -1,8 +1,9 @@
 <%-- 
-    Document   : fornecedores
-    Created on : 27/03/2019, 22:26:37
+   Document   : clientes
+    Created on : 27/03/2019, 22:26:21
     Author     : finha
 --%>
+
 
 <%@page import="br.com.projeto03.fatecpg.poo.Bd"%>
 <%@page import="br.com.projeto03.fatecpg.poo.Fornecedor"%>
@@ -43,13 +44,24 @@
     }catch(Exception ex) { %> 
             <script>alert("Não existe valor há ser alterado");</script>
         <% } %>  
-<script>
+
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastro de Fornecedores</title>
-        
-         function validacao(){
+        <%@include file="WEB-INF/jspf/bootstrap_meta_and_fonts.jspf"%>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript"></script>
+<script src="http://digitalbush.com/files/jquery/maskedinput/rc3/jquery.maskedinput.js" type="text/javascript"></script>
+<script>
+jQuery(function($){
+   $("#cpf").mask("999.999.999-99");
+   $("#cpf_alt").mask("999.999.999-99");
+   $("#telefone_alt").mask("(99) 99999-9999"); 
+   $("#telefone").mask("(99) 99999-9999");
+   $("#rg").mask("99.999.999-9");
+   $("#rg_alt").mask("99.999.999-9");
+   
+});
+    function validacao(){
         
    var formulario = document.forms ["formcadastro"];
    var cnpj = formulario.cnpj.value;
@@ -125,13 +137,15 @@ function validacao_alt(){
             return true;
         }
     }
-    
-</script>
 
+
+
+</script>
     </head>
     <body>
-      
-        <!-- Formulario -->  
+        <%@include file="WEB-INF/jspf/navbar.jspf"%>
+        
+<!-- Formulario -->  
 
     <!-- Grid markup Bootstrap -->
         <center><div class="card-group">
@@ -140,7 +154,6 @@ function validacao_alt(){
                     <h5 class="card-title h5body">Cadastro de Fornecedores</h5>
                     <p class="card-text pbody">Insira os dados solicitados para criar uma lista de fornecedores.</p>
                     <form name="formcadastro" action="fornecedores.jsp" method ="post" onsubmit="return validacao()" >
-                        <br>
                         <table>
                             <tr><td><input class="form-control" type="text" name="nome" placeholder="Nome da Empresa"></td></tr>
                             <tr><td><input class="form-control" type="text" name="razao" placeholder="Razão Social"></td></tr>
@@ -156,10 +169,10 @@ function validacao_alt(){
             <div class="card">    
                 <div class="card-body">
                     <h5 class="card-title h5body">Alterar Lista</h5>
-                    <p class="card-text pbody">Por favor, digitar o n° do ID e os demais dados solicitados abaixo para alterar um item da lista de Fornecedores.</p>
+                    <p class="card-text pbody">Digite o ID do campo que deseja alterar e insira novamente os dados para gerar a alteração.</p>
                     <form name="formalt" action="fornecedores.jsp" method="post" onsubmit="return validacao_alt()">
                         <table>
-                            <tr><td><input class="form-control" type="text" name="id" placeholder="ID"></td></tr>
+                            <tr><td><input class="form-control" type="text" name="indice" placeholder="Índice"></td></tr>
                             <tr><td><input class="form-control" type="text" name="nome_alt" placeholder="Nome da Empresa"></td></tr>
                             <tr><td><input class="form-control" type="text" name="razao_alt" placeholder="Razão Social"></td></tr>
                             <tr><td><input class="form-control" type="text" name="cnpj_alt" placeholder="CNPJ" id="cnpj_alt"></td></tr>
@@ -173,14 +186,13 @@ function validacao_alt(){
             </div>
         </div></center>
     
-    <center><div><br>
-            <h3>Lista de Fornecedores</h3>
-    <br><table class="table table-striped">
+    <center><div>
+        <table class="table">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Empresa</th>
-                    <th scope="col">Razão Social</th>
+                    <th scope="col">Razaão Social</th>
                     <th scope="col">CNPJ</th>
                     <th scope="col">E-mail</th>
                     <th scope="col">Telefone</th>
@@ -212,6 +224,9 @@ function validacao_alt(){
         </table>
             
     </div></center>
+    
+        <%@include file="WEB-INF/jspf/footer.jspf"%>
         
+        <%@include file="WEB-INF/jspf/bootstrap_body_end.jspf"%>
     </body>
 </html>

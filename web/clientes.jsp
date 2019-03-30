@@ -1,8 +1,9 @@
 <%-- 
-    Document   : clientes
+   Document   : clientes
     Created on : 27/03/2019, 22:26:21
     Author     : finha
 --%>
+
 
 <%@page import="br.com.projeto03.fatecpg.poo.Bd"%>
 <%@page import="br.com.projeto03.fatecpg.poo.Cliente"%>
@@ -47,9 +48,18 @@
     <head>
         <title>Cadastro de Clientes</title>
         <%@include file="WEB-INF/jspf/bootstrap_meta_and_fonts.jspf"%>
-   
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript"></script>
+<script src="http://digitalbush.com/files/jquery/maskedinput/rc3/jquery.maskedinput.js" type="text/javascript"></script>
 <script>
-
+jQuery(function($){
+   $("#cpf").mask("999.999.999-99");
+   $("#cpf_alt").mask("999.999.999-99");
+   $("#telefone_alt").mask("(99) 99999-9999"); 
+   $("#telefone").mask("(99) 99999-9999");
+   $("#rg").mask("99.999.999-9");
+   $("#rg_alt").mask("99.999.999-9");
+   
+});
     function validacao(){
         
    var formulario = document.forms ["formcadastro"];
@@ -155,11 +165,10 @@ function validacao_alt(){
             <div class="card">    
                 <div class="card-body">
                     <h5 class="card-title h5body">Alterar Lista</h5>
-                    <p class="card-text pbody">Por favor, digitar o n° do ID e os demais dados solicitados abaixo para alterar um item da lista de clientes.</p>
+                    <p class="card-text pbody">Digite o ID do campo que deseja alterar e insira novamente os dados para gerar a alteração.</p>
                     <form name="formalt" action="clientes.jsp" method="post" onsubmit="return validacao_alt()">
-                        <br>
                         <table>
-                            <tr><td><input class="form-control" type="text" name="id" placeholder="ID"></td></tr>
+                            <tr><td><input class="form-control" type="text" name="indice" placeholder="Índice"></td></tr>
                             <tr><td><input class="form-control" type="text" name="nome_alt" placeholder="Nome"></td></tr>
                             <tr><td><input class="form-control" type="text" name="cpf_alt" placeholder="CPF"id="cpf_alt"></td></tr>
                             <tr><td><input class="form-control" type="text" name="rg_alt" placeholder="RG"id="rg_alt"></td></tr>
@@ -167,15 +176,14 @@ function validacao_alt(){
                             <tr><td><input class="form-control" type="text" name="telefone_alt" placeholder="Telefone"id="telefone_alt"></td></tr>
                             <tr><td><input class="form-control" type="text" name="endereco_alt" placeholder="Endereço"></td></tr>
                         </table>
-                        <br><input class="btn btn-outline-primary" type="submit" name="alt" value="Alterar">
+                        <br><input class="bttbody btn btn-primary" type="submit" name="alt" value="Alterar">
                         </form>
                 </div>
             </div>
         </div></center>
     
-    <center><div><br>
-            <h3>Lista de Clientes</h3>
-     <br><table class="table table-striped">
+    <center><div>
+        <table class="table">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -204,7 +212,6 @@ function validacao_alt(){
                         <form>
                             <input type="hidden" name="i" value="<%= i %>"/>
                             <input type="submit" name="del" value="Excluir"/>
-                            
                         </form>
                     </td>
                 </tr>
@@ -212,5 +219,9 @@ function validacao_alt(){
             </tbody>
         </table>
     </div></center>
+    
+        <%@include file="WEB-INF/jspf/footer.jspf"%>
+        
+        <%@include file="WEB-INF/jspf/bootstrap_body_end.jspf"%>
     </body>
 </html>
