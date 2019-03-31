@@ -1,0 +1,34 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<style>
+
+    .topo {
+        overflow: hidden;
+        background-color: #303030;
+    }
+
+    .topo a {
+        position: relative;
+        text-align: center;
+        float: left;
+        color: #f5f5f5;
+        text-align: center;
+        padding: 14px 36px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    .topo a:hover {
+        background-color: #d1d1d1;
+        color: #000000;
+    }
+
+</style>
+<div class="topo">
+    <a href = "home.jsp">Home</a>
+    <a href="clientes.jsp">Clientes</a>
+    <a href="fornecedores.jsp">Fornecedores</a>
+    
+</div>
